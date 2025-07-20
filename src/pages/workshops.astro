@@ -1,0 +1,111 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { siteConfig, workshopsOrganized } from '../data/cv';
+---
+
+<Layout title={`Workshops & Special Sessions | ${siteConfig.name}`}>
+  <div class="container workshops-page">
+    
+    <div class="page-header">
+      <h1>Workshops & Special Sessions</h1>
+      <p class="header-desc">
+        Scientific workshops, special sessions, and generative collaborations I have organized across Artificial Life, Cognitive Computational Neuroscience, and Evolutionary Computation.
+      </p>
+    </div>
+
+    <div class="workshops-list">
+      {workshopsOrganized.map((item) => (
+        <article class="workshop-item">
+          <div class="workshop-title-row">
+            <h2 class="workshop-name">
+              {item.name}
+            </h2>
+          </div>
+
+          <div class="workshop-meta">
+            <span class="meta-tag">{item.event}</span> &bull; 
+            <span class="meta-location">{item.location}</span> &bull; 
+            <span class="meta-year">{item.year}</span>
+            <span class="meta-link">
+              <a href={item.url} target="_blank" rel="noopener noreferrer" class="link-badge">
+                Workshop Website
+              </a>
+            </span>
+          </div>
+        </article>
+      ))}
+    </div>
+
+  </div>
+</Layout>
+
+<style>
+  .workshops-page {
+    padding-top: 3rem;
+  }
+
+  .page-header {
+    margin-bottom: 3.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .page-header h1 {
+    font-size: 2.15rem;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.35rem;
+  }
+
+  .header-desc {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .workshops-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.25rem;
+  }
+
+  .workshop-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding-bottom: 1.75rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .workshop-item:last-child {
+    border-bottom: none;
+  }
+
+  .workshop-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.45;
+    color: var(--text-main);
+    margin: 0;
+  }
+
+  .workshop-meta {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .meta-tag {
+    color: var(--text-main);
+    font-weight: 500;
+  }
+
+  .meta-year {
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .meta-link {
+    margin-left: 0.35rem;
+  }
+</style>

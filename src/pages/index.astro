@@ -1,0 +1,316 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { siteConfig, summaryText, researchLines } from '../data/cv';
+---
+
+<Layout title={`${siteConfig.name} | Home`}>
+  <div class="container landing-page">
+
+    <!-- Hero Profile Section -->
+    <section class="hero-section">
+      <div class="hero-grid">
+
+        <!-- Profile Photo Container -->
+        <div class="photo-container">
+          <div class="photo-wrapper">
+            <img
+              src="/profile.jpg"
+              alt={siteConfig.name}
+              class="profile-photo"
+              onerror="this.style.display='none'; const el=this.parentElement.querySelector('.photo-placeholder'); if(el) el.style.display='flex';"
+            />
+            <div class="photo-placeholder" style="display: none;" title="Profile picture placeholder">
+              <svg class="placeholder-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+              <span class="photo-hint">Profile Photo</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bio & Contact Info -->
+        <div class="hero-info">
+          <h1 class="hero-name">{siteConfig.name}</h1>
+          <p class="hero-title">
+          Researcher in AI, Cogsci and ALife.
+          </p>
+          <p class="hero-affil">
+            Currently independent &bull; Former Postdoctoral Researcher at
+            <a href="https://real.itu.dk" target="_blank" rel="noopener noreferrer">REAL Lab</a>,
+            IT University of Copenhagen &bull; PhD in Psychology from the University of Bristol
+          </p>
+
+          <!-- Flat, Clean Inline Social & Academic Links -->
+          <div class="social-links-row">
+            {siteConfig.socials.map((social, idx) => (
+              <span>
+                <a href={social.url} target="_blank" rel="noopener noreferrer" class="plain-link">
+                  {social.name}
+                </a>
+                <span class="link-sep">&bull;</span>
+              </span>
+            ))}
+          </div>
+
+          <div class="contact-links-row">
+            {siteConfig.emails.map((email, idx) => (
+              <span>
+                <a href={`mailto:${email.address}`} class="plain-link">
+                  {email.address}
+                </a>
+                {idx < siteConfig.emails.length - 1 ? <span class="link-sep">&bull;</span> : null}
+              </span>
+            ))}
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Research Interests Summary -->
+    <section class="section summary-section">
+      <h2 class="section-title">Research Summary</h2>
+      <p class="summary-text">
+        {summaryText}
+      </p>
+    </section>
+
+    <!-- Lines of Research -->
+    <section class="section research-lines-section">
+      <h2 class="section-title">Lines of Research</h2>
+
+      <div class="research-lines-list">
+        {researchLines.map((line) => (
+          <article class="research-line-item">
+            <h3 class="research-line-title">{line.title}</h3>
+            <p class="research-line-desc">
+              {line.description}
+            </p>
+
+            {line.keyPublications && line.keyPublications.length > 0 && (
+              <div class="featured-pubs">
+                <span class="featured-label">Key papers:</span>
+                <ul class="featured-list">
+                  {line.keyPublications.map((pub) => (
+                    <li>
+                      <a href={pub.url} target="_blank" rel="noopener noreferrer">
+                        {pub.title} &rarr;
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </article>
+        ))}
+      </div>
+    </section>
+
+  </div>
+</Layout>
+
+<style>
+  .landing-page {
+    padding-top: 3rem;
+  }
+
+  /* Hero Section */
+  .hero-section {
+    margin-bottom: 4rem;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 170px 1fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  @media (max-width: 680px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+      text-align: center;
+      justify-items: center;
+    }
+  }
+
+  .photo-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .photo-wrapper {
+    width: 160px;
+    height: 160px;
+  }
+
+  .profile-photo {
+    width: 160px;
+    height: 160px;
+    border-radius: var(--radius-full);
+    object-fit: cover;
+    border: 1px solid var(--border);
+  }
+
+  .photo-placeholder {
+    width: 160px;
+    height: 160px;
+    border-radius: var(--radius-full);
+    background-color: var(--bg-subtle);
+    border: 1px dashed var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    color: var(--text-dim);
+  }
+
+  .placeholder-icon {
+    width: 44px;
+    height: 44px;
+    opacity: 0.6;
+  }
+
+  .photo-hint {
+    font-size: 0.72rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .hero-name {
+    font-size: 2.15rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--text-main);
+    margin-bottom: 0.25rem;
+  }
+
+  .hero-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 0.35rem;
+  }
+
+  .hero-affil {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+  }
+
+  .hero-affil a {
+    color: var(--text-main);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .hero-affil a:hover {
+    color: var(--accent);
+  }
+
+  /* Flat Inline Social Links */
+  .social-links-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 680px) {
+    .social-links-row {
+      justify-content: center;
+    }
+  }
+
+  .plain-link {
+    color: var(--accent);
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .plain-link:hover {
+    text-decoration: underline;
+  }
+
+  .link-sep {
+    color: var(--text-dim);
+    margin-left: 0.35rem;
+  }
+
+  /* Sections */
+  .section {
+    margin-bottom: 4rem;
+  }
+
+  .summary-text {
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: var(--text-main);
+    margin: 0;
+  }
+
+  /* Lines of Research */
+  .research-lines-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .research-line-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .research-line-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-main);
+  }
+
+  .research-line-desc {
+    color: var(--text-muted);
+    font-size: 0.98rem;
+    line-height: 1.75;
+    margin: 0;
+  }
+
+  .featured-pubs {
+    margin-top: 0.35rem;
+    font-size: 0.9rem;
+  }
+
+  .featured-label {
+    font-weight: 600;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    display: block;
+    margin-bottom: 0.35rem;
+  }
+
+  .featured-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .featured-list li a {
+    color: var(--accent);
+    font-size: 0.92rem;
+    line-height: 1.5;
+  }
+
+  .featured-list li a:hover {
+    text-decoration: underline;
+  }
+</style>

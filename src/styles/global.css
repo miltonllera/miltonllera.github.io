@@ -1,0 +1,227 @@
+:root {
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  /* Light Theme */
+  --bg: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-subtle: #f1f5f9;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --text-dim: #94a3b8;
+  --border: #e2e8f0;
+  --border-subtle: #edf2f7;
+  
+  /* Primary Accent: Deep Navy & Electric Academic Blue */
+  --accent: #195faa;
+  --accent-hover: #124482;
+  --accent-light: #e8f1fb;
+  --accent-border: #bfdbfe;
+  
+  /* Secondary Accent: Cyan / Teal */
+  --accent-teal: #0d9488;
+  --accent-teal-light: #f0fdfa;
+
+  --badge-bg: #f1f5f9;
+  --badge-text: #475569;
+  --badge-border: #e2e8f0;
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.06), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-full: 9999px;
+  
+  --max-width: 900px;
+}
+
+html.dark {
+  /* Dark Theme */
+  --bg: #090d16;
+  --bg-surface: #111827;
+  --bg-subtle: #1e293b;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+  --border: #1e293b;
+  --border-subtle: #162032;
+
+  --accent: #60a5fa;
+  --accent-hover: #93c5fd;
+  --accent-light: rgba(96, 165, 250, 0.12);
+  --accent-border: rgba(96, 165, 250, 0.3);
+
+  --accent-teal: #2dd4bf;
+  --accent-teal-light: rgba(45, 212, 191, 0.12);
+
+  --badge-bg: #1e293b;
+  --badge-text: #cbd5e1;
+  --badge-border: #334155;
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.55);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-sans);
+  background-color: var(--bg);
+  color: var(--text-main);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.18s ease, border-color 0.18s ease;
+}
+
+a:hover {
+  color: var(--accent-hover);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* Base Container */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Typography Helpers */
+h1, h2, h3, h4 {
+  color: var(--text-main);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+h1 { font-size: 2.1rem; letter-spacing: -0.02em; }
+h2 { font-size: 1.4rem; letter-spacing: -0.01em; }
+h3 { font-size: 1.15rem; }
+
+p {
+  margin-bottom: 1.25rem;
+  color: var(--text-main);
+  line-height: 1.75;
+}
+
+p.lead {
+  font-size: 1.12rem;
+  line-height: 1.8;
+  color: var(--text-muted);
+}
+
+/* Link Badges (Academic LaTeX style matching cv.tex) */
+.link-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--accent);
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  padding: 0;
+  transition: color 0.15s ease;
+}
+
+.link-badge::before {
+  content: "[";
+  color: var(--text-dim);
+  margin-right: 0.15rem;
+  font-weight: 400;
+}
+
+.link-badge::after {
+  content: "]";
+  color: var(--text-dim);
+  margin-left: 0.15rem;
+  font-weight: 400;
+}
+
+.link-badge:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+  background: transparent;
+  transform: none;
+}
+
+/* Section Header - Clean Academic Divider */
+.section-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-main);
+  letter-spacing: -0.01em;
+}
+
+/* Print Styles for CV */
+@media print {
+  html, body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 10pt !important;
+  }
+  
+  header, footer, .no-print, .theme-toggle, .btn-download {
+    display: none !important;
+  }
+
+  .container {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .card {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0.5rem 0 !important;
+  }
+
+  a {
+    color: #195faa !important;
+    text-decoration: underline !important;
+  }
+
+  .section-title {
+    border-bottom: 1px solid #333333 !important;
+    color: #14284b !important;
+  }
+}

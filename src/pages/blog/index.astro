@@ -1,0 +1,115 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { siteConfig } from '../../data/cv';
+
+// Sample placeholder blog posts for when blog is activated
+const posts = [
+  {
+    title: "Welcome to my academic research blog",
+    date: "2026-10-23",
+    description: "Thoughts, notes, and behind-the-scenes perspectives on self-organization, cognitive vision, and artificial life.",
+    slug: "welcome",
+    tags: ["Research", "Artificial Life", "Cognitive Science"]
+  }
+];
+---
+
+<Layout title={`Blog | ${siteConfig.name}`}>
+  <div class="container blog-page">
+    <div class="blog-header">
+      <h1>Blog & Writing</h1>
+      <p class="blog-subtitle">
+        Essays, paper walkthroughs, and discussions on biological development, generalization, and AI.
+      </p>
+    </div>
+
+    <div class="blog-list">
+      {posts.map((post) => (
+        <article class="blog-card card">
+          <div class="blog-meta">
+            <time datetime={post.date}>{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+          </div>
+          <h2 class="blog-title">
+            {post.title}
+          </h2>
+          <p class="blog-desc">
+            {post.description}
+          </p>
+          <div class="blog-tags">
+            {post.tags.map((tag) => (
+              <span class="tag">{tag}</span>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .blog-page {
+    padding-top: 2.5rem;
+  }
+
+  .blog-header {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .blog-header h1 {
+    font-size: 2rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .blog-subtitle {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  .blog-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .blog-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .blog-meta {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+  }
+
+  .blog-title {
+    font-size: 1.3rem;
+    color: var(--text-main);
+  }
+
+  .blog-desc {
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  .blog-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-top: 0.5rem;
+  }
+
+  .tag {
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.2rem 0.55rem;
+    border-radius: var(--radius-full);
+    background-color: var(--badge-bg);
+    color: var(--badge-text);
+    border: 1px solid var(--badge-border);
+  }
+</style>

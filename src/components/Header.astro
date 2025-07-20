@@ -1,0 +1,161 @@
+---
+import { siteConfig } from '../data/cv';
+import ThemeToggle from './ThemeToggle.astro';
+
+const pathname = Astro.url.pathname;
+const isHome = pathname === '/' || pathname === '';
+const isPublications = pathname.startsWith('/publications');
+const isWorkshops = pathname.startsWith('/workshops');
+const isBlog = pathname.startsWith('/blog');
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="brand">
+      <span class="brand-name">{siteConfig.shortName}</span>
+      <span class="brand-dot">.</span>
+    </a>
+
+    <nav class="nav">
+      <ul class="nav-links">
+        <li>
+          <a href="/" class={`nav-link ${isHome ? 'active' : ''}`}>Home</a>
+        </li>
+        <li>
+          <a href="/publications" class={`nav-link ${isPublications ? 'active' : ''}`}>Publications & Talks</a>
+        </li>
+        <li>
+          <a href="/workshops" class={`nav-link ${isWorkshops ? 'active' : ''}`}>Workshops</a>
+        </li>
+        {siteConfig.showBlog && (
+          <li>
+            <a href="/blog" class={`nav-link ${isBlog ? 'active' : ''}`}>Blog</a>
+          </li>
+        )}
+        <li>
+          <a href="/cv.pdf" target="_blank" rel="noopener noreferrer" class="nav-link cv-link" title="Download CV (PDF)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            CV (PDF)
+          </a>
+        </li>
+      </ul>
+      <div class="nav-actions">
+        <ThemeToggle />
+      </div>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    border-bottom: 1px solid var(--border);
+    background-color: var(--bg-surface);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(8px);
+    transition: background-color 0.25s ease, border-color 0.25s ease;
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 4rem;
+  }
+
+  .brand {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+
+  .brand-dot {
+    color: var(--accent);
+  }
+
+  .brand:hover .brand-name {
+    color: var(--accent);
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-link {
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    padding: 0.4rem 0.65rem;
+    border-radius: var(--radius-sm);
+    transition: color 0.18s ease, background-color 0.18s ease;
+    white-space: nowrap;
+  }
+
+  .nav-link:hover {
+    color: var(--accent);
+    background-color: var(--bg-subtle);
+  }
+
+  .nav-link.active {
+    color: var(--accent);
+    font-weight: 600;
+    background-color: var(--accent-light);
+  }
+
+  .cv-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    border: 1px solid var(--border);
+    font-weight: 600;
+    background-color: var(--bg-surface);
+  }
+
+  .cv-link:hover {
+    border-color: var(--accent-border);
+    color: var(--accent);
+    background-color: var(--accent-light);
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+  }
+
+  @media (max-width: 680px) {
+    .header-inner {
+      height: auto;
+      padding: 0.75rem 1rem;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+    .nav {
+      width: 100%;
+      justify-content: space-between;
+      overflow-x: auto;
+    }
+    .nav-links {
+      gap: 0.25rem;
+    }
+  }
+</style>

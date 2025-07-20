@@ -1,0 +1,284 @@
+---
+import Layout from '../layouts/Layout.astro';
+import {
+  siteConfig,
+  journalArticles,
+  conferenceProceedings,
+  preprintsAndWorkshops,
+  invitedTalks,
+  contributedPresentations
+} from '../data/cv';
+
+function formatAuthors(authorsStr: string) {
+  // Highlight Milton's name variants cleanly in bold without nested tags
+  return authorsStr.replace(/Montero, M\.(?: L\.)?/g, '<strong>$&</strong>');
+}
+---
+
+<Layout title={`Publications & Talks | ${siteConfig.name}`}>
+  <div class="container publications-page">
+    
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="header-content">
+        <h1>Publications & Talks</h1>
+        <p class="header-desc">
+          Peer-reviewed journal articles, conference proceedings, preprints, and invited presentations.
+        </p>
+      </div>
+
+      <!-- Quick Section Jump Navigation -->
+      <nav class="quick-nav" aria-label="Sections navigation">
+        <span class="quick-nav-label">Jump to:</span>
+        <a href="#journals" class="quick-link">Journals ({journalArticles.length})</a>
+        <span class="sep">&bull;</span>
+        <a href="#conferences" class="quick-link">Conferences ({conferenceProceedings.length})</a>
+        <span class="sep">&bull;</span>
+        <a href="#preprints" class="quick-link">Preprints ({preprintsAndWorkshops.length})</a>
+        <span class="sep">&bull;</span>
+        <a href="#talks" class="quick-link">Invited Talks ({invitedTalks.length})</a>
+        <span class="sep">&bull;</span>
+        <a href="#posters" class="quick-link">Posters & Presentations ({contributedPresentations.length})</a>
+      </nav>
+    </div>
+
+    <!-- 1. Journal Articles -->
+    <section id="journals" class="pub-section">
+      <h2 class="section-title">Journal Articles</h2>
+      <ol class="pub-list">
+        {journalArticles.map((pub) => (
+          <li class="pub-item">
+            <div class="pub-citation">
+              <span set:html={formatAuthors(pub.authors)} /> ({pub.year}).{' '}
+              <strong class="pub-title">{pub.title}</strong>.{' '}
+              <em class="pub-venue">{pub.venue}</em>.
+              <span class="pub-links">
+                {pub.links.map((link) => (
+                  <a href={link.url} target="_blank" rel="noopener noreferrer" class="link-badge">
+                    {link.label}
+                  </a>
+                ))}
+              </span>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <!-- 2. Peer-Reviewed Conference Proceedings -->
+    <section id="conferences" class="pub-section">
+      <h2 class="section-title">Conference Proceedings</h2>
+      <ol class="pub-list">
+        {conferenceProceedings.map((pub) => (
+          <li class="pub-item">
+            <div class="pub-citation">
+              <span set:html={formatAuthors(pub.authors)} /> ({pub.year}).{' '}
+              <strong class="pub-title">{pub.title}</strong>.{' '}
+              <em class="pub-venue">{pub.venue}</em>.
+              <span class="pub-links">
+                {pub.links.map((link) => (
+                  <a href={link.url} target="_blank" rel="noopener noreferrer" class="link-badge">
+                    {link.label}
+                  </a>
+                ))}
+              </span>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <!-- 3. Preprints & Workshop Papers -->
+    <section id="preprints" class="pub-section">
+      <h2 class="section-title">Preprints & Workshop Papers</h2>
+      <ol class="pub-list">
+        {preprintsAndWorkshops.map((pub) => (
+          <li class="pub-item">
+            <div class="pub-citation">
+              <span set:html={formatAuthors(pub.authors)} /> ({pub.year}).{' '}
+              <strong class="pub-title">{pub.title}</strong>.{' '}
+              <em class="pub-venue">{pub.venue}</em>.
+              <span class="pub-links">
+                {pub.links.map((link) => (
+                  <a href={link.url} target="_blank" rel="noopener noreferrer" class="link-badge">
+                    {link.label}
+                  </a>
+                ))}
+              </span>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <!-- 4. Invited Talks & Panels -->
+    <section id="talks" class="pub-section">
+      <h2 class="section-title">Invited Talks & Panel Discussions</h2>
+      <ul class="talk-list">
+        {invitedTalks.map((talk) => (
+          <li class="talk-item">
+            <div class="talk-header">
+              <strong class="talk-title">{talk.title}</strong>
+            </div>
+            <div class="talk-meta">
+              <span class="talk-event">{talk.event}</span> &bull; 
+              <span class="talk-year">{talk.year}</span>
+              <span class="pub-links">
+                {talk.links.map((link) => (
+                  <a href={link.url} target="_blank" rel="noopener noreferrer" class="link-badge">
+                    {link.label}
+                  </a>
+                ))}
+              </span>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- 5. Contributed Posters & Presentations -->
+    <section id="posters" class="pub-section">
+      <h2 class="section-title">Selected Contributed Presentations & Posters</h2>
+      <ul class="talk-list">
+        {contributedPresentations.map((item) => (
+          <li class="talk-item">
+            <div class="talk-header">
+              <strong class="talk-title">{item.title}</strong>
+            </div>
+            <div class="talk-meta">
+              <span class="talk-event">{item.event}</span> &bull; 
+              <span class="talk-year">{item.year}</span>
+              <span class="pub-links">
+                {item.links.map((link) => (
+                  <a href={link.url} target="_blank" rel="noopener noreferrer" class="link-badge">
+                    {link.label}
+                  </a>
+                ))}
+              </span>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+  </div>
+</Layout>
+
+<style>
+  .publications-page {
+    padding-top: 3rem;
+  }
+
+  .page-header {
+    margin-bottom: 3.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .header-content h1 {
+    font-size: 2.15rem;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.35rem;
+  }
+
+  .header-desc {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+  }
+
+  /* Quick Navigation */
+  .quick-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.88rem;
+  }
+
+  .quick-nav-label {
+    font-weight: 600;
+    color: var(--text-dim);
+    margin-right: 0.2rem;
+  }
+
+  .quick-link {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .quick-link:hover {
+    text-decoration: underline;
+  }
+
+  .sep {
+    color: var(--text-dim);
+    margin: 0 0.2rem;
+  }
+
+  /* Section styling */
+  .pub-section {
+    margin-bottom: 4rem;
+    scroll-margin-top: 5rem;
+  }
+
+  .pub-list {
+    padding-left: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .pub-item {
+    font-size: 0.98rem;
+    line-height: 1.7;
+    color: var(--text-main);
+  }
+
+  .pub-citation {
+    margin: 0;
+  }
+
+  .pub-title {
+    color: var(--text-main);
+  }
+
+  .pub-venue {
+    color: var(--text-muted);
+  }
+
+  .pub-links {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-left: 0.35rem;
+  }
+
+  /* Talks & Presentations List */
+  .talk-list {
+    list-style: disc;
+    padding-left: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .talk-item {
+    font-size: 0.98rem;
+    line-height: 1.65;
+  }
+
+  .talk-header {
+    margin-bottom: 0.2rem;
+  }
+
+  .talk-title {
+    color: var(--text-main);
+  }
+
+  .talk-meta {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+  }
+</style>
