@@ -74,33 +74,44 @@ export const researchLines: ResearchLine[] = [
     title: "Self-Organization, Morphogenesis & Artificial Life",
     shortDesc: "Theoretical models of self-organization, developmental scaffolds, and cellular mechanisms that drive robust, open-ended biological development and artificial agents.",
     description: "Investigating how simple local rules give rise to complex, adaptive, and self-repairing morphological structures. This research focuses on learning developmental scaffolds for self-organizing systems, language-guided cellular automata, meta-learning evolvable developmental encodings, and identifying reusable regulatory handles to control phenotypic variation.",
-    topics: ["Self-Organization", "Morphogenetic Scaffolds", "Cellular Automata", "Evolvable Encodings", "Synthetic Biology"],
+    topics: ["Self-Organization", "Morphogenetic Scaffolds", "Cellular Automata", "Indirect Encodings", "Synthetic Biology"],
     keyPublications: [
-      { title: "Learning developmental scaffolds for self-organising systems (ALife 2026)", url: "https://arxiv.org/abs/2605.14998" },
+      { title: "Learning Developmental Scaffoldings to Guide Self-Organization (ALife 2026)", url: "https://arxiv.org/abs/2605.14998" },
       { title: "On Growth and Form, and Function: Reusable Regulatory Handles Control Phenotypic Variation (2026)", url: "https://arxiv.org/pdf/2609.29755" },
-      { title: "Meta-learning an evolvable developmental encoding (ALife 2024)", url: "https://direct.mit.edu/isal/proceedings/isal2024/36/50/123543" }
+      { title: "Meta-learning an Evolvable Developmental Encoding (ALife 2024)", url: "https://direct.mit.edu/isal/proceedings/isal2024/36/50/123543" }
     ]
   },
   {
-    title: "Combinatorial Generalization & Cognitive Vision",
-    shortDesc: "Exploring the combinatorial generalization properties and (dis)similarities between human vision and deep neural networks.",
-    description: "Critically examining deep neural networks as models of human vision and cognition. This line investigates the role of disentangled latent representations, limitations of object-centric models in compositional generalization tasks, and rigorous testing frameworks (such as MindSet: Vision) comparing biological perception with machine vision.",
-    topics: ["Compositional Learning", "Object-Centric Vision", "Disentangled Representations", "Psychophysics Testing of DNNs", "Cognitive Science"],
+    title: "Combinatorial Generalization in Machine Vision",
+    shortDesc: "Exploring the combinatorial generalization abilities of visual representation models",
+    description: "Critically assessing the ability of representation learning methods to discover combinatorial structure in image datasets (i.e. semantic decomposition) and recombine discovered “concepts” in order to successfully generalize. Specifically, this line of research investigates the role of disentangled latent representations, segmentation and pure unsupervised learning in the emergence of said abilities. The main methodological approach is the creation of datasets that specifically test for these abilities, while remaining amenable to human interpretation.",
+    topics: ["Compositional Learning", "Object-Centric Vision", "Disentangled Representations"],
+    keyPublications: [
+      { title: "Lost in Latent Space: disentangled models and combinatorial generalisation (NeurIPS 2022)", url: "https://arxiv.org/abs/2204.02283" },
+      { title: "Successes and limitations of object-centric models at compositional generalisation (2024)", url: "https://arxiv.org/abs/2412.18743" },
+      { title: "The role of disentanglement in generalization (ICLR 2021)", url: "https://openreview.net/forum?id=qbH974jKUVy" }
+    ]
+  },
+  {
+    title: "NeuroAI Vision Science",
+    shortDesc: "Approaching the questions of NeuroAI using controlled experiments and stimuli inspired from classical vision science.",
+    description: "This line of work interrogates the capacity of Deep Learning models to serve as models of human vision. While related in its subject of interest to mainstream NeuroAI, it differs in methodology by instead using carefully crafted stimuli, based on classical experiments from vision psychology, and controlled experiments instead of correlational studies. The hope is that this enables more targeted interrogation of these systems while being more amenable to human comprehension.",
+    topics: ["Machine vision", "Vision Science experiments", "Severe testing and controlled experiments"],
     keyPublications: [
       { title: "Deep problems with neural network models of human vision (BBS 2023)", url: "https://doi.org/10.1017/S0140525X22002813" },
-      { title: "Lost in Latent Space: Disentangled Models and Combinatorial Generalisation (NeurIPS 2022)", url: "https://arxiv.org/abs/2204.02283" },
-      { title: "Successes and Limitations of Object-centric Models at Compositional Generalisation (2024)", url: "https://arxiv.org/pdf/2412.18743" }
+      { title: "On the importance of severely testing deep learning models of cognition (Cognitive Systems Research 2023)", url: "https://doi.org/10.1016/j.cogsys.2023.101158" },
+      { title: "MindSet: Vision. A toolbox for testing DNNs on key psychological experiments (2024)", url: "https://arxiv.org/abs/2404.05290" }
     ]
   },
   {
-    title: "Adaptive Neural Architectures & Neuroevolution",
-    shortDesc: "Designing neural architectures and biologically-inspired mechanisms for memory, gating, and transfer learning.",
-    description: "Investigating fundamental computational mechanisms such as subtractive and divisive gating in recurrent networks, plastic probabilistic synapses, self-assembling neural networks, and self-evolving hypernetworks. Comparing neuroevolution and reinforcement learning across complex adaptation and transfer regimes.",
-    topics: ["Neuroevolution", "Gating Mechanisms", "Synaptic Plasticity", "Hypernetworks", "Transfer Learning"],
+    title: "Neuroevolution and adaptive neural architectures",
+    shortDesc: "Designing neural architectures and biologically-inspired mechanisms for memory, gating, and transfer learning",
+    description: "Investigating fundamental computational mechanisms that enable continuous adaptation in artificial agents including: self-assembling neural networks, self-evolving hypernetworks, and online credit assignment. Comparing Neuroevolution and reinforcement learning across complex adaptation and transfer regimes.",
+    topics: ["Neuroevolution", "Synaptic Plasticity", "Hypernetworks", "Transfer Learning"],
     keyPublications: [
       { title: "When Does Neuroevolution Outcompete Reinforcement Learning in Transfer Tasks? (GECCO 2025)", url: "https://dl.acm.org/doi/pdf/10.1145/3712256.3726475" },
       { title: "Hypernetworks That Evolve Themselves (ALife 2025)", url: "https://arxiv.org/abs/2512.16406" },
-      { title: "Computational roles of plastic probabilistic synapses (Curr. Opin. Neurobiol. 2019)", url: "https://doi.org/10.1016/j.conb.2018.09.002" }
+      { title: "Evolving Self-Assembling Neural Networks: From Spontaneous Activity to Experience-Dependent Learning (ALife 2024)", url: "https://direct.mit.edu/isal/proceedings/isal2024/36/37/123555" }
     ]
   }
 ];
