@@ -5,11 +5,11 @@ import { siteConfig, workshopsOrganized } from '../data/cv';
 
 <Layout title={`Workshops & Special Sessions | ${siteConfig.name}`}>
   <div class="container workshops-page">
-    
+
     <div class="page-header">
       <h1>Workshops & Special Sessions</h1>
       <p class="header-desc">
-        Scientific workshops, special sessions, and generative collaborations I have organized across Artificial Life, Cognitive Computational Neuroscience, and Evolutionary Computation.
+        Scientific workshops, special sessions, and collaborations I have organized across Artificial Life, Cognitive Computational Neuroscience, and Evolutionary Computation.
       </p>
     </div>
 
@@ -23,8 +23,8 @@ import { siteConfig, workshopsOrganized } from '../data/cv';
           </div>
 
           <div class="workshop-meta">
-            <span class="meta-tag">{item.event}</span> &bull; 
-            <span class="meta-location">{item.location}</span> &bull; 
+            <span class="meta-tag">{item.event}</span> &bull;
+            <span class="meta-location">{item.location}</span> &bull;
             <span class="meta-year">{item.year}</span>
             <span class="meta-link">
               <a href={item.url} target="_blank" rel="noopener noreferrer" class="link-badge">
