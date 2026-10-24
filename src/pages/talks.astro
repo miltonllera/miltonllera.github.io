@@ -1,0 +1,171 @@
+---
+import Layout from '../layouts/Layout.astro';
+import {
+  siteConfig,
+  invitedTalks,
+  contributedPresentations,
+  type PresentationItem
+} from '../data/cv';
+
+interface PresentationSection {
+  id: string;
+  title: string;
+  shortLabel: string;
+  items: PresentationItem[];
+}
+
+const presentationSections: PresentationSection[] = [
+  { id: 'invited', title: 'Invited Talks & Panel Discussions', shortLabel: 'Invited Talks', items: invitedTalks },
+  { id: 'contributed', title: 'Selected Contributed Presentations & Posters', shortLabel: 'Posters & Presentations', items: contributedPresentations }
+];
+---
+
+<Layout title={`Talks & Presentations | ${siteConfig.name}`}>
+  <div class="container talks-page">
+    
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="header-content">
+        <h1>Talks & Presentations</h1>
+        <p class="header-desc">
+          Invited talks, panel discussions, debate presentations, and conference poster sessions.
+        </p>
+      </div>
+
+      <!-- Quick Section Jump Navigation -->
+      <nav class="quick-nav" aria-label="Sections navigation">
+        <span class="quick-nav-label">Jump to:</span>
+        {presentationSections.map((sec, idx) => (
+          <span>
+            <a href={`#${sec.id}`} class="quick-link">
+              {sec.shortLabel} ({sec.items.length})
+            </a>
+            {idx < presentationSections.length - 1 ? <span class="sep">&bull;</span> : null}
+          </span>
+        ))}
+      </nav>
+    </div>
+
+    <!-- Presentation Sections -->
+    {presentationSections.map((sec) => (
+      <section id={sec.id} class="talks-section">
+        <h2 class="section-title">{sec.title}</h2>
+        <ul class="talk-list">
+          {sec.items.map((item) => (
+            <li class="talk-item">
+              <div class="talk-header">
+                <strong class="talk-title">{item.title}</strong>
+              </div>
+              <div class="talk-meta">
+                <span class="talk-event">{item.event}</span> &bull; 
+                <span class="talk-year">{item.year}</span>
+                <span class="pub-links">
+                  {item.links.map((link) => (
+                    <a href={link.url} target="_blank" rel="noopener noreferrer" class="link-badge">
+                      {link.label}
+                    </a>
+                  ))}
+                </span>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+
+  </div>
+</Layout>
+
+<style>
+  .talks-page {
+    padding-top: 3rem;
+  }
+
+  .page-header {
+    margin-bottom: 3.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .header-content h1 {
+    font-size: 2.15rem;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.35rem;
+  }
+
+  .header-desc {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+  }
+
+  /* Quick Navigation */
+  .quick-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.88rem;
+  }
+
+  .quick-nav-label {
+    font-weight: 600;
+    color: var(--text-dim);
+    margin-right: 0.2rem;
+  }
+
+  .quick-link {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .quick-link:hover {
+    text-decoration: underline;
+  }
+
+  .sep {
+    color: var(--text-dim);
+    margin: 0 0.2rem;
+  }
+
+  /* Section styling */
+  .talks-section {
+    margin-bottom: 4rem;
+    scroll-margin-top: 5rem;
+  }
+
+  /* Talks & Presentations List */
+  .talk-list {
+    list-style: disc;
+    padding-left: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .talk-item {
+    font-size: 0.98rem;
+    line-height: 1.65;
+  }
+
+  .talk-header {
+    margin-bottom: 0.2rem;
+  }
+
+  .talk-title {
+    color: var(--text-main);
+  }
+
+  .talk-meta {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+  }
+
+  .pub-links {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-left: 0.35rem;
+  }
+</style>

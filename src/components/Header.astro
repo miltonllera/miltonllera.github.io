@@ -5,6 +5,7 @@ import ThemeToggle from './ThemeToggle.astro';
 const pathname = Astro.url.pathname;
 const isHome = pathname === '/' || pathname === '';
 const isPublications = pathname.startsWith('/publications');
+const isTalks = pathname.startsWith('/talks');
 const isWorkshops = pathname.startsWith('/workshops');
 const isBlog = pathname.startsWith('/blog');
 ---
@@ -22,7 +23,10 @@ const isBlog = pathname.startsWith('/blog');
           <a href="/" class={`nav-link ${isHome ? 'active' : ''}`}>Home</a>
         </li>
         <li>
-          <a href="/publications" class={`nav-link ${isPublications ? 'active' : ''}`}>Publications & Talks</a>
+          <a href="/publications" class={`nav-link ${isPublications ? 'active' : ''}`}>Publications</a>
+        </li>
+        <li>
+          <a href="/talks" class={`nav-link ${isTalks ? 'active' : ''}`}>Talks</a>
         </li>
         <li>
           <a href="/workshops" class={`nav-link ${isWorkshops ? 'active' : ''}`}>Workshops</a>

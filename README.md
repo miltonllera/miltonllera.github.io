@@ -6,18 +6,19 @@ Personal academic website designed with [Astro](https://astro.build) and hosted 
 
 - **Landing Page (`/`)**:
   - Summary of research interests.
-  - Three distinct lines of research:
+  - Four distinct lines of research:
     1. *Self-Organization, Morphogenesis & Artificial Life*
-    2. *Combinatorial Generalization & Cognitive Vision*
-    3. *Adaptive Neural Architectures & Bio-Inspired AI*
+    2. *Combinatorial Generalization in Machine Vision*
+    3. *NeuroAI Vision Science*
+    4. *Neuroevolution and adaptive neural architectures*
   - Profile image / placeholder with links to Google Scholar, GitHub, LinkedIn, ORCID, YouTube, and email.
-  - Quick action buttons to view Publications, Workshops, and download CV.
-- **Publications & Talks (`/publications`)**:
+- **Publications (`/publications`)**:
   - Peer-reviewed Journal Articles.
   - Conference Proceedings (ALife, GECCO, NeurIPS, ICLR).
   - Preprints & Working Papers.
+- **Talks (`/talks`)**:
   - Invited Talks & Panel Discussions.
-  - Contributed Posters & Presentations.
+  - Selected Contributed Presentations & Posters.
 - **Workshops & Special Sessions (`/workshops`)**:
   - Workshops and special sessions organized (ALICE 2027, ALife 2026, CCN 2026 GAC, ALICE 2026, SONI ALife 2025, GECCO 2025).
 - **CV (PDF Download)**:

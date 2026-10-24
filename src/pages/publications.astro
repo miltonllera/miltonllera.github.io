@@ -5,10 +5,7 @@ import {
   journalArticles,
   conferenceProceedings,
   preprintsAndWorkshops,
-  invitedTalks,
-  contributedPresentations,
-  type PublicationItem,
-  type PresentationItem
+  type PublicationItem
 } from '../data/cv';
 
 function formatAuthors(authorsStr: string) {
@@ -23,48 +20,34 @@ interface PublicationSection {
   items: PublicationItem[];
 }
 
-interface PresentationSection {
-  id: string;
-  title: string;
-  shortLabel: string;
-  items: PresentationItem[];
-}
-
 const publicationSections: PublicationSection[] = [
   { id: 'journals', title: 'Journal Articles', shortLabel: 'Journals', items: journalArticles },
   { id: 'conferences', title: 'Conference Proceedings', shortLabel: 'Conferences', items: conferenceProceedings },
   { id: 'preprints', title: 'Preprints & Workshop Papers', shortLabel: 'Preprints', items: preprintsAndWorkshops }
 ];
-
-const presentationSections: PresentationSection[] = [
-  { id: 'talks', title: 'Invited Talks & Panel Discussions', shortLabel: 'Invited Talks', items: invitedTalks },
-  { id: 'posters', title: 'Selected Contributed Presentations & Posters', shortLabel: 'Posters & Presentations', items: contributedPresentations }
-];
-
-const allSections = [...publicationSections, ...presentationSections];
 ---
 
-<Layout title={`Publications & Talks | ${siteConfig.name}`}>
+<Layout title={`Publications | ${siteConfig.name}`}>
   <div class="container publications-page">
     
     <!-- Page Header -->
     <div class="page-header">
       <div class="header-content">
-        <h1>Publications & Talks</h1>
+        <h1>Publications</h1>
         <p class="header-desc">
-          Peer-reviewed journal articles, conference proceedings, preprints, and invited presentations.
+          Peer-reviewed journal articles, conference proceedings, and preprints.
         </p>
       </div>
 
       <!-- Quick Section Jump Navigation -->
       <nav class="quick-nav" aria-label="Sections navigation">
         <span class="quick-nav-label">Jump to:</span>
-        {allSections.map((sec, idx) => (
+        {publicationSections.map((sec, idx) => (
           <span>
             <a href={`#${sec.id}`} class="quick-link">
               {sec.shortLabel} ({sec.items.length})
             </a>
-            {idx < allSections.length - 1 ? <span class="sep">&bull;</span> : null}
+            {idx < publicationSections.length - 1 ? <span class="sep">&bull;</span> : null}
           </span>
         ))}
       </nav>
@@ -92,33 +75,6 @@ const allSections = [...publicationSections, ...presentationSections];
             </li>
           ))}
         </ol>
-      </section>
-    ))}
-
-    <!-- Presentations Sections (Invited Talks, Contributed Posters) -->
-    {presentationSections.map((sec) => (
-      <section id={sec.id} class="pub-section">
-        <h2 class="section-title">{sec.title}</h2>
-        <ul class="talk-list">
-          {sec.items.map((item) => (
-            <li class="talk-item">
-              <div class="talk-header">
-                <strong class="talk-title">{item.title}</strong>
-              </div>
-              <div class="talk-meta">
-                <span class="talk-event">{item.event}</span> &bull; 
-                <span class="talk-year">{item.year}</span>
-                <span class="pub-links">
-                  {item.links.map((link) => (
-                    <a href={link.url} target="_blank" rel="noopener noreferrer" class="link-badge">
-                      {link.label}
-                    </a>
-                  ))}
-                </span>
-              </div>
-            </li>
-          ))}
-        </ul>
       </section>
     ))}
 
@@ -214,32 +170,5 @@ const allSections = [...publicationSections, ...presentationSections];
     flex-wrap: wrap;
     gap: 0.4rem;
     margin-left: 0.35rem;
-  }
-
-  /* Talks & Presentations List */
-  .talk-list {
-    list-style: disc;
-    padding-left: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .talk-item {
-    font-size: 0.98rem;
-    line-height: 1.65;
-  }
-
-  .talk-header {
-    margin-bottom: 0.2rem;
-  }
-
-  .talk-title {
-    color: var(--text-main);
-  }
-
-  .talk-meta {
-    font-size: 0.92rem;
-    color: var(--text-muted);
   }
 </style>
