@@ -25,7 +25,7 @@ const posts = [
 
     <div class="blog-list">
       {posts.map((post) => (
-        <article class="blog-card card">
+        <article class="blog-item">
           <div class="blog-meta">
             <time datetime={post.date}>{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
           </div>
@@ -37,7 +37,7 @@ const posts = [
           </p>
           <div class="blog-tags">
             {post.tags.map((tag) => (
-              <span class="tag">{tag}</span>
+              <span class="blog-tag">#{tag}</span>
             ))}
           </div>
         </article>
@@ -48,17 +48,18 @@ const posts = [
 
 <style>
   .blog-page {
-    padding-top: 2.5rem;
+    padding-top: 3rem;
   }
 
   .blog-header {
-    margin-bottom: 2.5rem;
-    padding-bottom: 1.25rem;
+    margin-bottom: 3.5rem;
+    padding-bottom: 1.5rem;
     border-bottom: 1px solid var(--border);
   }
 
   .blog-header h1 {
-    font-size: 2rem;
+    font-size: 2.15rem;
+    letter-spacing: -0.02em;
     margin-bottom: 0.35rem;
   }
 
@@ -71,13 +72,19 @@ const posts = [
   .blog-list {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 2.5rem;
   }
 
-  .blog-card {
+  .blog-item {
     display: flex;
     flex-direction: column;
-    gap: 0.65rem;
+    gap: 0.4rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .blog-item:last-child {
+    border-bottom: none;
   }
 
   .blog-meta {
@@ -86,30 +93,29 @@ const posts = [
   }
 
   .blog-title {
-    font-size: 1.3rem;
+    font-size: 1.25rem;
+    font-weight: 700;
     color: var(--text-main);
+    margin: 0;
   }
 
   .blog-desc {
     color: var(--text-muted);
-    line-height: 1.65;
+    line-height: 1.7;
     margin: 0;
+    font-size: 0.98rem;
   }
 
   .blog-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.45rem;
-    margin-top: 0.5rem;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
   }
 
-  .tag {
-    font-size: 0.75rem;
+  .blog-tag {
+    font-size: 0.82rem;
     font-weight: 500;
-    padding: 0.2rem 0.55rem;
-    border-radius: var(--radius-full);
-    background-color: var(--badge-bg);
-    color: var(--badge-text);
-    border: 1px solid var(--badge-border);
+    color: var(--text-dim);
   }
 </style>

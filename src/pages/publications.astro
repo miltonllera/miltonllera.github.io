@@ -6,13 +6,42 @@ import {
   conferenceProceedings,
   preprintsAndWorkshops,
   invitedTalks,
-  contributedPresentations
+  contributedPresentations,
+  type PublicationItem,
+  type PresentationItem
 } from '../data/cv';
 
 function formatAuthors(authorsStr: string) {
   // Highlight Milton's name variants cleanly in bold without nested tags
   return authorsStr.replace(/Montero, M\.(?: L\.)?/g, '<strong>$&</strong>');
 }
+
+interface PublicationSection {
+  id: string;
+  title: string;
+  shortLabel: string;
+  items: PublicationItem[];
+}
+
+interface PresentationSection {
+  id: string;
+  title: string;
+  shortLabel: string;
+  items: PresentationItem[];
+}
+
+const publicationSections: PublicationSection[] = [
+  { id: 'journals', title: 'Journal Articles', shortLabel: 'Journals', items: journalArticles },
+  { id: 'conferences', title: 'Conference Proceedings', shortLabel: 'Conferences', items: conferenceProceedings },
+  { id: 'preprints', title: 'Preprints & Workshop Papers', shortLabel: 'Preprints', items: preprintsAndWorkshops }
+];
+
+const presentationSections: PresentationSection[] = [
+  { id: 'talks', title: 'Invited Talks & Panel Discussions', shortLabel: 'Invited Talks', items: invitedTalks },
+  { id: 'posters', title: 'Selected Contributed Presentations & Posters', shortLabel: 'Posters & Presentations', items: contributedPresentations }
+];
+
+const allSections = [...publicationSections, ...presentationSections];
 ---
 
 <Layout title={`Publications & Talks | ${siteConfig.name}`}>
@@ -30,136 +59,68 @@ function formatAuthors(authorsStr: string) {
       <!-- Quick Section Jump Navigation -->
       <nav class="quick-nav" aria-label="Sections navigation">
         <span class="quick-nav-label">Jump to:</span>
-        <a href="#journals" class="quick-link">Journals ({journalArticles.length})</a>
-        <span class="sep">&bull;</span>
-        <a href="#conferences" class="quick-link">Conferences ({conferenceProceedings.length})</a>
-        <span class="sep">&bull;</span>
-        <a href="#preprints" class="quick-link">Preprints ({preprintsAndWorkshops.length})</a>
-        <span class="sep">&bull;</span>
-        <a href="#talks" class="quick-link">Invited Talks ({invitedTalks.length})</a>
-        <span class="sep">&bull;</span>
-        <a href="#posters" class="quick-link">Posters & Presentations ({contributedPresentations.length})</a>
+        {allSections.map((sec, idx) => (
+          <span>
+            <a href={`#${sec.id}`} class="quick-link">
+              {sec.shortLabel} ({sec.items.length})
+            </a>
+            {idx < allSections.length - 1 ? <span class="sep">&bull;</span> : null}
+          </span>
+        ))}
       </nav>
     </div>
 
-    <!-- 1. Journal Articles -->
-    <section id="journals" class="pub-section">
-      <h2 class="section-title">Journal Articles</h2>
-      <ol class="pub-list">
-        {journalArticles.map((pub) => (
-          <li class="pub-item">
-            <div class="pub-citation">
-              <span set:html={formatAuthors(pub.authors)} /> ({pub.year}).{' '}
-              <strong class="pub-title">{pub.title}</strong>.{' '}
-              <em class="pub-venue">{pub.venue}</em>.
-              <span class="pub-links">
-                {pub.links.map((link) => (
-                  <a href={link.url} target="_blank" rel="noopener noreferrer" class="link-badge">
-                    {link.label}
-                  </a>
-                ))}
-              </span>
-            </div>
-          </li>
-        ))}
-      </ol>
-    </section>
+    <!-- Publications Sections (Journals, Conferences, Preprints) -->
+    {publicationSections.map((sec) => (
+      <section id={sec.id} class="pub-section">
+        <h2 class="section-title">{sec.title}</h2>
+        <ol class="pub-list">
+          {sec.items.map((pub) => (
+            <li class="pub-item">
+              <div class="pub-citation">
+                <span set:html={formatAuthors(pub.authors)} /> ({pub.year}).{' '}
+                <strong class="pub-title">{pub.title}</strong>.{' '}
+                <em class="pub-venue">{pub.venue}</em>.
+                <span class="pub-links">
+                  {pub.links.map((link) => (
+                    <a href={link.url} target="_blank" rel="noopener noreferrer" class="link-badge">
+                      {link.label}
+                    </a>
+                  ))}
+                </span>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+    ))}
 
-    <!-- 2. Peer-Reviewed Conference Proceedings -->
-    <section id="conferences" class="pub-section">
-      <h2 class="section-title">Conference Proceedings</h2>
-      <ol class="pub-list">
-        {conferenceProceedings.map((pub) => (
-          <li class="pub-item">
-            <div class="pub-citation">
-              <span set:html={formatAuthors(pub.authors)} /> ({pub.year}).{' '}
-              <strong class="pub-title">{pub.title}</strong>.{' '}
-              <em class="pub-venue">{pub.venue}</em>.
-              <span class="pub-links">
-                {pub.links.map((link) => (
-                  <a href={link.url} target="_blank" rel="noopener noreferrer" class="link-badge">
-                    {link.label}
-                  </a>
-                ))}
-              </span>
-            </div>
-          </li>
-        ))}
-      </ol>
-    </section>
-
-    <!-- 3. Preprints & Workshop Papers -->
-    <section id="preprints" class="pub-section">
-      <h2 class="section-title">Preprints & Workshop Papers</h2>
-      <ol class="pub-list">
-        {preprintsAndWorkshops.map((pub) => (
-          <li class="pub-item">
-            <div class="pub-citation">
-              <span set:html={formatAuthors(pub.authors)} /> ({pub.year}).{' '}
-              <strong class="pub-title">{pub.title}</strong>.{' '}
-              <em class="pub-venue">{pub.venue}</em>.
-              <span class="pub-links">
-                {pub.links.map((link) => (
-                  <a href={link.url} target="_blank" rel="noopener noreferrer" class="link-badge">
-                    {link.label}
-                  </a>
-                ))}
-              </span>
-            </div>
-          </li>
-        ))}
-      </ol>
-    </section>
-
-    <!-- 4. Invited Talks & Panels -->
-    <section id="talks" class="pub-section">
-      <h2 class="section-title">Invited Talks & Panel Discussions</h2>
-      <ul class="talk-list">
-        {invitedTalks.map((talk) => (
-          <li class="talk-item">
-            <div class="talk-header">
-              <strong class="talk-title">{talk.title}</strong>
-            </div>
-            <div class="talk-meta">
-              <span class="talk-event">{talk.event}</span> &bull; 
-              <span class="talk-year">{talk.year}</span>
-              <span class="pub-links">
-                {talk.links.map((link) => (
-                  <a href={link.url} target="_blank" rel="noopener noreferrer" class="link-badge">
-                    {link.label}
-                  </a>
-                ))}
-              </span>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </section>
-
-    <!-- 5. Contributed Posters & Presentations -->
-    <section id="posters" class="pub-section">
-      <h2 class="section-title">Selected Contributed Presentations & Posters</h2>
-      <ul class="talk-list">
-        {contributedPresentations.map((item) => (
-          <li class="talk-item">
-            <div class="talk-header">
-              <strong class="talk-title">{item.title}</strong>
-            </div>
-            <div class="talk-meta">
-              <span class="talk-event">{item.event}</span> &bull; 
-              <span class="talk-year">{item.year}</span>
-              <span class="pub-links">
-                {item.links.map((link) => (
-                  <a href={link.url} target="_blank" rel="noopener noreferrer" class="link-badge">
-                    {link.label}
-                  </a>
-                ))}
-              </span>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </section>
+    <!-- Presentations Sections (Invited Talks, Contributed Posters) -->
+    {presentationSections.map((sec) => (
+      <section id={sec.id} class="pub-section">
+        <h2 class="section-title">{sec.title}</h2>
+        <ul class="talk-list">
+          {sec.items.map((item) => (
+            <li class="talk-item">
+              <div class="talk-header">
+                <strong class="talk-title">{item.title}</strong>
+              </div>
+              <div class="talk-meta">
+                <span class="talk-event">{item.event}</span> &bull; 
+                <span class="talk-year">{item.year}</span>
+                <span class="pub-links">
+                  {item.links.map((link) => (
+                    <a href={link.url} target="_blank" rel="noopener noreferrer" class="link-badge">
+                      {link.label}
+                    </a>
+                  ))}
+                </span>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
 
   </div>
 </Layout>

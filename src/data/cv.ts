@@ -12,27 +12,6 @@ export interface ResearchLine {
   keyPublications?: { title: string; url: string }[];
 }
 
-export interface ExperienceItem {
-  role: string;
-  period: string;
-  institution: string;
-  location: string;
-  description: string;
-}
-
-export interface EducationItem {
-  degree: string;
-  period: string;
-  institution: string;
-  location: string;
-  supervisors?: string;
-  thesis?: {
-    title: string;
-    url?: string;
-  };
-  cgpa?: string;
-}
-
 export interface PublicationItem {
   authors: string;
   year: number | string;
@@ -123,74 +102,6 @@ export const researchLines: ResearchLine[] = [
       { title: "Hypernetworks That Evolve Themselves (ALife 2025)", url: "https://arxiv.org/abs/2512.16406" },
       { title: "Computational roles of plastic probabilistic synapses (Curr. Opin. Neurobiol. 2019)", url: "https://doi.org/10.1016/j.conb.2018.09.002" }
     ]
-  }
-];
-
-export const experienceData: ExperienceItem[] = [
-  {
-    role: "Postdoctoral Researcher",
-    period: "June 2023 – September 2026",
-    institution: "REAL Lab, IT University of Copenhagen",
-    location: "Copenhagen, Denmark",
-    description: "Studying the mechanisms that enable robust, open-ended development and adaptation in biological and artificial systems."
-  },
-  {
-    role: "Applied Scientist Intern",
-    period: "July 2022 – December 2022",
-    institution: "Causal Representation Learning Lablet, Amazon Web Services (AWS)",
-    location: "Tübingen, Germany",
-    description: "Worked as an intern focusing on action recognition from videos using motion cues with Carl-Johann Simon-Gabriel, Thomas Brox, and Francesco Locatello."
-  },
-  {
-    role: "Teaching Assistant",
-    period: "October 2018 – July 2020",
-    institution: "Department of Computer Science, University of Bristol",
-    location: "Bristol, UK",
-    description: "Teaching assistant for Information Processing in the Brain (COMSM034), covering information theory, deep learning, and data analysis relevant to computational neuroscience."
-  },
-  {
-    role: "Research Assistant",
-    period: "August 2017 – May 2018",
-    institution: "School of Engineering, Technical University of Madrid (UPM)",
-    location: "Madrid, Spain",
-    description: "Implemented software tools for the Human Brain Project through the Cajal Blue Brain affiliate project."
-  }
-];
-
-export const educationData: EducationItem[] = [
-  {
-    degree: "Doctor of Philosophy (PhD) in Psychology",
-    period: "September 2018 – May 2023",
-    institution: "School of Psychological Science, University of Bristol",
-    location: "Bristol, UK",
-    supervisors: "Prof. Jeffrey S. Bowers, Dr. Rui Ponte Costa, Dr. Gaurav Malhotra",
-    thesis: {
-      title: "Combinatorial Generalisation in Machine Vision",
-      url: "https://research-information.bris.ac.uk/en/studentTheses/combinatorial-generalisation-in-machine-vision/"
-    }
-  },
-  {
-    degree: "Master's Degree (MSc) in Artificial Intelligence",
-    period: "September 2016 – July 2017",
-    institution: "School of Engineering, Technical University of Madrid (UPM)",
-    location: "Madrid, Spain",
-    supervisors: "Prof. Concha Bielza, Prof. Pedro Larrañaga",
-    cgpa: "8.8 / 10",
-    thesis: {
-      title: "A Novel Multi-dimensional Regression Model Based on Gaussian Networks",
-      url: "https://cig.fi.upm.es/wp-content/uploads/2024/01/TFM_MILTON_LLERA_MONTERO.pdf"
-    }
-  },
-  {
-    degree: "Bachelor's Degree (BS) in Computer Science",
-    period: "September 2011 – July 2016",
-    institution: "Department of Mathematics and Computer Science, University of Havana",
-    location: "Havana, Cuba",
-    supervisors: "Dr. Alejandro Piad Morffis",
-    cgpa: "4.52 / 5",
-    thesis: {
-      title: "Example-based Terrain Modeling for Procedural Content Generation"
-    }
   }
 ];
 
@@ -519,10 +430,3 @@ export const workshopsOrganized: WorkshopItem[] = [
     url: "https://gecco-2025.sigevo.org/Workshopb2fc.html?itemId=5097"
   }
 ];
-
-export const skillsAndService = {
-  technical: "Extensive experience with programming in Python (primary language). Within the AI ecosystem, proficient with both PyTorch and JAX, as well as libraries for scientific computing (NumPy, SciPy) and visualization (Matplotlib). Familiarity with C/C++, C#, R, JavaScript, and MATLAB.",
-  behavioral: "Design and execution of calibrated psychophysics experiments using PsychoPy; experience with pre-registration frameworks such as the Open Science Framework (OSF) model.",
-  reviewing: "Active reviewer for NeurIPS, ICLR, ICML, AAAI, GECCO, ALife, and TMLR. Experienced in academic speaking and public dissemination.",
-  languages: "Native speaker of both English and Spanish."
-};

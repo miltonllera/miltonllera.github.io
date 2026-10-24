@@ -17,22 +17,8 @@
   --accent-hover: #124482;
   --accent-light: #e8f1fb;
   --accent-border: #bfdbfe;
-  
-  /* Secondary Accent: Cyan / Teal */
-  --accent-teal: #0d9488;
-  --accent-teal-light: #f0fdfa;
-
-  --badge-bg: #f1f5f9;
-  --badge-text: #475569;
-  --badge-border: #e2e8f0;
-
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.06), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
 
   --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 14px;
   --radius-full: 9999px;
   
   --max-width: 900px;
@@ -53,17 +39,6 @@ html.dark {
   --accent-hover: #93c5fd;
   --accent-light: rgba(96, 165, 250, 0.12);
   --accent-border: rgba(96, 165, 250, 0.3);
-
-  --accent-teal: #2dd4bf;
-  --accent-teal-light: rgba(45, 212, 191, 0.12);
-
-  --badge-bg: #1e293b;
-  --badge-text: #cbd5e1;
-  --badge-border: #334155;
-
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.45);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.55);
 }
 
 * {
@@ -191,7 +166,7 @@ p.lead {
   letter-spacing: -0.01em;
 }
 
-/* Print Styles for CV */
+/* Print Styles */
 @media print {
   html, body {
     background: #ffffff !important;
@@ -199,7 +174,7 @@ p.lead {
     font-size: 10pt !important;
   }
   
-  header, footer, .no-print, .theme-toggle, .btn-download {
+  header, footer, .no-print, .theme-toggle {
     display: none !important;
   }
 
@@ -207,12 +182,6 @@ p.lead {
     max-width: 100% !important;
     padding: 0 !important;
     margin: 0 !important;
-  }
-
-  .card {
-    border: none !important;
-    box-shadow: none !important;
-    padding: 0.5rem 0 !important;
   }
 
   a {

@@ -211,8 +211,9 @@ import { siteConfig, summaryText, researchLines } from '../data/cv';
     color: var(--accent);
   }
 
-  /* Flat Inline Social Links */
-  .social-links-row {
+  /* Flat Inline Social & Contact Links */
+  .social-links-row,
+  .contact-links-row {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -221,8 +222,13 @@ import { siteConfig, summaryText, researchLines } from '../data/cv';
     color: var(--text-muted);
   }
 
+  .contact-links-row {
+    margin-top: 0.35rem;
+  }
+
   @media (max-width: 680px) {
-    .social-links-row {
+    .social-links-row,
+    .contact-links-row {
       justify-content: center;
     }
   }
