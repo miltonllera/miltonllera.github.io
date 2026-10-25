@@ -49,7 +49,7 @@ export interface WorkshopItem {
 
 export const siteConfig = {
   name: "Milton Llera Montero, PhD",
-  shortName: "Milton L. Montero",
+  shortName: "",
   title: "Milton Llera Montero | Academic Website",
   description: "Researcher studying mechanisms that support generalization and adaptability in biological and artificial systems.",
   avatarPlaceholderText: "MLM",
